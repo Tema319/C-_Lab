@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    int a,b,c,d;
+    A1:cout<<"Enter four didgits of in IP address:"<<"\n";
+    cin>>a>>b>>c>>d;
+    if (a < 1 && a > 255 && 
+        b < 1 && b > 255 && 
+        c < 1 && c > 255 && 
+        d < 1 && d > 255) 
+    {
+        cout << "ERROR: numbers must be between 1 and 255";
+        goto A1;
+    } 
+    else {
+        string ip = to_string(a) + "." + to_string(b) + "." + to_string(c) + "." + to_string(d);
+        cout << ip;
+    }
+   
+}

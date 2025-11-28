@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    float x,y;
+    cout<<"Enter two numbers so I would compare them"<<"\n";
+    cin>>x>>y;
+    if (x==0 or y==0){
+    cout<<"ERROR";
+    }
+    else{
+    float a=1./x;
+    float b=1./y;
+    float e=0.000001;
+    if (std::fabs(a - b) < e){
+        cout<<"Results are equal (by 0.000001 epsilon)";
+        }
+    else{
+        cout<<"Results are not equal (by 0.000001 epsilon)";
+        }
+    }
+}
