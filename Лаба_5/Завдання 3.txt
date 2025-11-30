@@ -1,0 +1,36 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double a, b, h, x, y;
+
+ A1:cout << "Enter the beggining (a): ";
+    cin >> a;
+    cout << "Enter the end (b): ";
+    cin >> b;
+    cout << "Enter the step (h): ";
+    cin >> h;
+
+    if (h <= 0 && h>b && a > b) {
+        cout << "Incorrect walues, try aggain." << endl;
+        goto A1;
+    }
+
+    cout << fixed << setprecision(4);
+    cout << "-------------------------" << endl;
+    cout << "    X     |     Y        " << endl;
+    cout << "-------------------------" << endl;
+
+    x = a;
+    while (x <= b + 1e-9) { 
+       
+        y = 1.0 / (pow(x - 4, 2)) + 6;
+  
+        cout << setw(9) << x << " | " << setw(5) << y << endl;
+
+        x += h;
+    }
+
+}
