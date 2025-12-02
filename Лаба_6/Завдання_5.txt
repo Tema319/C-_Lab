@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    int a;
+    int sum = 0;
+    int d;
+    do{
+cout<<"Enter a positive number:";
+cin>>a;
+    } while (a <= 0);
+    
+    while (a > 0){
+    d = a % 10;
+    if (d < 7) {
+    sum += d;    
+    }
+    a = a / 10;          
+    }
+cout<<"\n"<<"Result is:"<<sum;
+}
