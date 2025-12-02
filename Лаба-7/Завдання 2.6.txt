@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    int c0;
+    int a;
+  
+    do{
+cout<<"Enter a positive number that isn't 1: ";
+cin>>c0;
+    } while (c0 <= 1);
+    
+    while (c0 != 1){
+    a++;
+    if (c0%2==0) {
+    c0=c0/2;    
+    } else {
+            c0 = 3 * c0 + 1;
+        }    
+    cout<< c0 <<"\n";
+    }
+cout<<"\n"<<"The amount of steps = "<<a;
+}
