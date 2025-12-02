@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include<cmath>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+int a[5]={}; 
+srand(time(NULL));
+for(int i = 0; i < 5; i++){
+a[i]=rand()% 900+100;
+}
+cout<<"Orriginal array is:";
+
+ for (int i = 0; i < 5; i++) {
+        cout << a[i] << " ";
+ }
+cout<<endl; 
+ 
+ int max = a[0];
+ int idmax=0;
+ 
+ for (int i = 0; i < 5; i ++) {
+        if (max<a[i]){
+            max=a[i];
+            idmax=i;
+            }
+}
+
+ int min = a[0];
+ int idmin=0;
+ 
+ for (int i = 0; i < 5; i ++) {
+        if (min>a[i]){
+            min=a[i];
+            idmin=i;
+            }
+}
+
+int t;
+t=a[idmax];
+a[idmax]=a[idmin];
+a[idmin]=t;
+
+cout<<"Array is:";
+
+ for (int i = 0; i < 5; i++) {
+        cout << a[i] << " ";
+ }
+ 
+}

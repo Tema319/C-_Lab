@@ -1,0 +1,17 @@
+cout << "Table: \n";
+for (int i=0;i<5;i++) {
+int rnumber = rand() % 5;
+RandomNumbers[i] = rnumber;
+cout << " "<<RandomNumbers[i]<<" ";
+} 
+
+for (int i=0;i<5;i++) { if (RandomNumbers[i]==0) { Index=i;; ZeroFound=true; break; } }
+
+if (ZeroFound==false) {
+cout<<"\n No elements equaling 0 were found in the array";
+}
+else { cout<<"\n Found 0 on the index "<<Index; }
+
+}
+
+}
