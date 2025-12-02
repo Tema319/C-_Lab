@@ -1,0 +1,24 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    const int m = 12;
+    int arr[m] = {25, 7, 13, 42, 5, 19, 88, 3, 14, 50, 1, 33};
+
+    for (int i = 0; i < m; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    sort(arr, arr + m);
+    for (int i = 0; i < m; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    sort(arr, arr + m, greater<int>());
+    for (int i = 0; i < m; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    return 0;
+}
