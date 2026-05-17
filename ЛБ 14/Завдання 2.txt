@@ -1,0 +1,60 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+
+int** arr = new int*[3];
+    for (int i = 0; i < 3; i++) {
+        *(arr + i) = new int[3]; 
+    }
+
+srand(time(NULL));
+
+ for (int i = 0; i < 3; i++) {
+     for (int j = 0; j < 3; j++){
+    *(*(arr + i) + j) = rand() % 90 + 10;
+    }
+}
+
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        cout << setw(4) << *(*(arr + i) + j);
+        }
+    cout << endl;
+}
+
+int even = 0, odd = 0;
+
+    cout << "\nMain diagonal: ";
+    for (int i = 0; i < 3; i++) {
+        cout << *(*(arr + i) + i) << " ";
+    }
+
+    cout << "\nSecondary diagonal: ";
+    for (int i = 0; i < 3; i++) {
+        cout << *(*(arr + i) + (3 - 1 - i)) << " ";
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (*(*(arr + i) + j) % 2 == 0) even++;
+            else odd++;
+        }
+    }
+
+cout << "\n\nEven: " << even << "\nOdd: " << odd << endl;
+
+
+for (int i = 0; i < 3; i++) {
+    delete[] *(arr + i);
+}
+    
+
+delete[] arr;
+
+return 0;
+}
