@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Square {
+private:
+    double side;
+    double area;
+    bool is_valid;
+
+public:
+    Square(double side) {
+        set_side(side); 
+    }
+
+    void set_side(double side) {
+        if (side >= 0) {
+            this->side = side; 
+            this->area = side * side;
+            this->is_valid = true;
+        } else {
+            cout << "ERROR!" << endl;
+            this->is_valid = false;
+        }
+    }
+
+    void print() {
+        if (is_valid) {
+        cout << "Square: side=" << side << " area=" << area << endl;
+        }
+    }
+};
+
+int main() {
+    Square side(4);
+    side.print(); 
+
+    side.set_side(2.0);
+    side.print();
+
+    side.set_side(-33.0);
+    side.print(); 
+
+    return 0;
+}

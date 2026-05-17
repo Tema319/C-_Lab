@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person
+{
+public:
+string name;
+int age;
+};
+
+class Job
+{
+public:
+string Jobname;
+int salary;
+};
+
+void print(Person* person)
+{
+cout << person->name << " is " << person->age << " years old" << endl;
+}
+
+void print(Job* job)
+{
+cout << "His job is " << job->Jobname << " and his salary is " <<job->salary<<"$"<< endl;
+}
+
+int main()
+{
+Person person;
+Job job;
+person.name = "Harry";
+person.age = 23;
+job.Jobname = "Doctor";
+job.salary = 34550000;
+cout << "Meet " << person.name<<endl;
+print(&person);
+print(&job);
+return 0;
+}

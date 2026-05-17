@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class AdHocSquare {
+public:
+    AdHocSquare(double side) {
+        set_side(side);
+    }
+
+    void set_side(double side) {
+        if (side >= 0) {
+            this->side = side;
+        } else {
+            cout << "AdHoc Error: Side cannot be negative!" << endl;
+            this->side = 0; 
+        }
+    }
+
+    double get_area() {
+        return side * side;
+    }
+
+private:
+    double side;
+};
+class LazySquare {
+public:
+
+    LazySquare(double side) : side(-1.0), area(0.0), side_changed(false) {
+        set_side(side); 
+    }
+
+    void set_side(double side) {
+        if (side >= 0) {
+            if (this->side != side) { 
+                this->side = side;
+                this->side_changed = true; 
+            }
+        } else {
+            cout << "Lazy Error: Side cannot be negative!" << endl;
+        }
+    }
+
+    double get_area() {
+        if (side_changed) {
+            cout << "[Lazy] Recalculating area..." << endl;
+            area = side * side;
+            side_changed = false; 
+        }
+        return area;
+    }
+
+private:
+    double side;
+    double area;
+    bool side_changed;
+};
+
+int main() {
+
+cout << "--- AdHoc Square ---" << endl;
+    AdHocSquare ah_sq(4.0);
+        cout << "Area: " << ah_sq.get_area() << endl;
+    ah_sq.set_side(5.0);
+        cout << "Area: " << ah_sq.get_area() << endl;
+
+cout << "\n--- Lazy Square ---" << endl;
+    LazySquare lz_sq(6.0);
+    
+    cout << "First call. Area: " << lz_sq.get_area() <<endl;
+    
+    cout << "Second call. Area: " << lz_sq.get_area() << endl;
+
+    lz_sq.set_side(8.0);
+
+    cout << "Third call. Area: " << lz_sq.get_area() << endl;
+
+    return 0;
+}
