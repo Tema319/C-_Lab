@@ -1,0 +1,101 @@
+#include <iostream>
+#include <ctime>
+#include <iostream>
+
+using namespace std;
+
+struct Date {
+    int year;
+    int month;
+    int day;
+};
+
+Date today(void) {
+    time_t t = time(NULL);
+    tm tl = *localtime(&t);
+
+    Date d; 
+    d.year = tl.tm_year + 1900; 
+    d.month = tl.tm_mon + 1;
+    d.day = tl.tm_mday;
+
+    return d; 
+}
+
+Date birthday(void) {    
+    Date d; 
+    cin>>d.year>>d.month>>d.day;
+    return d; 
+}
+
+bool isLeap(int year) {
+        if(year%4==0 && year % 100 != 0 or year % 400 == 0){
+            return true;
+        }
+        else{
+           return false;
+        }
+}
+
+int monthLength(int year, int month) {
+    switch (month) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            return 31;
+
+        case 4: case 6: case 9: case 11:
+            return 30;
+
+        case 2:
+            if (isLeap(year)) 
+                return 29;
+            else 
+                return 28;
+
+    }
+}
+
+
+int main(void) {
+    
+    Date t = today();
+    cout << t.year << "-" << t.month << "-" << t.day << endl;
+    
+    cout<<endl;
+    
+    Date b = birthday();
+    cout << b.year << "-" << b.month << "-" << b.day << endl;
+
+
+int days=0;
+if(b.year!=t.year){
+for (int yr = b.year+1; yr < t.year; yr++) {
+        for (int mo = 1; mo <= 12; mo++) {
+            days+=monthLength(yr, mo);
+        }
+    }
+    
+for (int mo = b.month+1; mo <= 12; mo++) {
+            days+=monthLength(b.year, mo);
+        }
+   
+for (int mo = 1; mo < t.month; mo++) {
+             days+=monthLength(t.year, mo);
+        }
+
+days+=t.day+(monthLength(b.year, b.month)-b.day)+1; 
+
+}else if(b.month!=t.month){
+    
+   for (int mo = b.month + 1; mo < t.month; mo++) {
+            days += monthLength(b.year, mo);
+    }
+days += monthLength(b.year, b.month) - b.day + t.day+1; 
+
+}else{
+days=t.day-b.day+1;
+}
+
+cout<<endl;
+cout<<days;
+return 0;
+}
