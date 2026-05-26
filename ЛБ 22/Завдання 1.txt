@@ -1,0 +1,103 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+int Task=1;
+
+class Fraction{
+public:
+Fraction(int numerator, int denominator);
+string toString();
+double toDouble();
+private:
+int numerator;
+int denominator;
+};
+
+Fraction::Fraction(int numerator, int denominator) {
+    this->numerator = numerator;
+    this->denominator = denominator;
+}
+
+string Fraction::toString() {
+    
+    string FinalString;
+    
+    int Negatives=0;
+    int EntirelyPositiveNumerator=this->numerator;
+    int EntirelyPositiveDenominator=this->denominator;
+    if ( this->numerator<0 ) { Negatives++; EntirelyPositiveNumerator=(this->numerator*-1); }
+    if ( this->denominator<0 ) { Negatives++; EntirelyPositiveDenominator=(this->denominator*-1); }
+    
+    if ( EntirelyPositiveNumerator > EntirelyPositiveDenominator ) {
+        
+        int RemainderOffset = EntirelyPositiveNumerator % EntirelyPositiveDenominator; // остача від того скільки разів знаменник попадає в чисельник
+        int ApplicableDividend = (EntirelyPositiveNumerator-RemainderOffset); //від чисельника відняти ту остачу
+        int AmountOfFills = ApplicableDividend / EntirelyPositiveDenominator; //ідеально поділити чисельник на знаменник щоб знайти скільки разів поміщається знаменник 
+        
+        string StringFills = to_string(AmountOfFills);
+        string StringRemainderOffset = to_string(RemainderOffset);
+        string StringPositiveDenominator = to_string(EntirelyPositiveDenominator);
+        
+        string FractionPortion = "";
+        if (RemainderOffset!=0) {
+        FinalString = StringFills+" "+StringRemainderOffset+"/"+StringPositiveDenominator;
+        }
+    else { FinalString = StringFills; }
+    }
+    else { 
+        string StringNumerator = to_string(EntirelyPositiveNumerator);
+        string StringDenominator = to_string(EntirelyPositiveDenominator);
+        FinalString = StringNumerator+"/"+StringDenominator; 
+    }
+    
+    if ( Negatives%2 != 0 ) {
+    FinalString = "-"+FinalString;
+    }
+    
+    return FinalString;
+}
+
+double Fraction::toDouble() {
+double NumeratorAdjusted = (double)this->numerator;
+double DenominatorAdjusted = (double)this->denominator;
+double InDoubleFormatNumber = NumeratorAdjusted/DenominatorAdjusted;
+return InDoubleFormatNumber;
+}
+
+int main(void){
+
+int IntNum,IntDen;
+string StringNum,StringDen;
+string input = "";
+getline(cin,input);
+
+int Offset = 0;
+for (int i=0;i<input.size();i++) {
+    if (input[i] == '/') { Offset=i+1; break; }
+    
+    if (input[i] == '-') { 
+    StringNum = "-"+StringNum;
+    }
+    else if ( isdigit(input[i]) ) { 
+    StringNum = StringNum+input[i]; 
+    }  
+    
+}
+for (int i=Offset;i<input.size();i++) { 
+    
+    if (input[i] == '-') { 
+    StringDen = "-"+StringDen;
+    }
+    else if ( isdigit(input[i]) ) { 
+    StringDen = StringDen+input[i]; 
+    }
+    
+}
+
+IntNum = stoi(StringNum);
+IntDen = stoi(StringDen);
+Fraction fraction(IntNum, IntDen);
+cout << fraction.toString()<<" is "<<fraction.toDouble()<<" in decimal";
+
+}

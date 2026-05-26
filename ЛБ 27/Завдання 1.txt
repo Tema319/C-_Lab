@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool DivisionByZeroCheck(int* res, int* arg1, int* arg2) {
+   
+try {
+    if (0==*arg2) {
+        throw runtime_error("cannot divide by 0");
+    }
+else { *res = ( *arg1/ *arg2); }
+}
+catch (const runtime_error& ErrorMessage) {
+    cout << ErrorMessage.what();
+    return false;
+}
+return true;
+
+}
+
+bool ParametersInputAndCheck(int* res, int* arg1, int* arg2) {
+try {
+cin >> *arg1; if (!cin) { throw runtime_error("Argument 1 is invalid"); }
+cin >> *arg2; if (!cin) { throw runtime_error("Argument 2 is invalid"); }
+}
+catch (const runtime_error& ErrorMessage) {
+    cout << ErrorMessage.what()<<"\n";
+    return false;
+}
+return true;
+
+}
+
+
+int main() {
+
+int r,a,b = 0;
+int*r_address = &r;
+int*a_address = &a;
+int*b_address = &b;
+
+if (ParametersInputAndCheck(r_address,a_address,b_address)) {
+if(DivisionByZeroCheck(r_address,a_address,b_address)) {
+cout << "answer: " << r << endl;
+}
+else { cout << "\nAre you kidding me?" << endl; }
+
+}
+else { cout << "\nAre you kidding me?" << endl; }
+
+}

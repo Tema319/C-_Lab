@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class BaseForTreeClasses {
+public:
+    virtual void Draw(int times) {
+        cout << "this method has nothing to it\n";
+    };
+};
+
+class SlashTree : public BaseForTreeClasses {
+public:
+    void Draw(int times) {
+
+        cout << "Slash Tree Drawing [Drawing 1]\n";
+
+        for (int rows = 1; rows <= times; rows++) {
+            cout << string((times - rows), ' ');
+            cout << string(rows, '/') << string(rows, '\\');
+            cout << "\n";
+        }
+    }
+};
+
+class AsteriskTree : public BaseForTreeClasses {
+public:
+    void Draw(int times) {
+
+        cout << "Asterisk Tree Drawing [Drawing 2]\n";
+
+        for (int rows = 1; rows <= times; rows++) {
+            cout << string((times - rows), ' ');
+            cout << "/" << string((rows * 2 - 2), '*') << "\\";
+            cout << "\n";
+        }
+    }
+};
+
+class PlusTree : public BaseForTreeClasses {
+public:
+    void Draw(int times) {
+
+        cout << "Plus Tree Drawing [Drawing 3]\n";
+
+        for (int rows = 1; rows <= times; rows++) {
+            cout << string((times - rows), ' ');
+            cout << "/" << string((rows * 2 - 2), '+') << "\\";
+            cout << "\n";
+        }
+    }
+};
+
+int main(void) {
+
+    BaseForTreeClasses* ObjectPointers[3];
+
+    SlashTree SlashTreeObject = SlashTree();
+    AsteriskTree AsteriskTreeSlashTreeObject = AsteriskTree();
+    PlusTree PlusTreeSlashTreeObject = PlusTree();
+
+    ObjectPointers[0] = &SlashTreeObject;
+    ObjectPointers[1] = &AsteriskTreeSlashTreeObject;
+    ObjectPointers[2] = &PlusTreeSlashTreeObject;
+
+    for (int i = 0; i < 3; i++) {
+        ObjectPointers[i]->Draw(4);
+    }
+}
